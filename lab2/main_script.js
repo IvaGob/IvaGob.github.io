@@ -125,6 +125,7 @@ function showTour(index) {
         // Додаємо маркери
         for (let j = 0; j < selectedTour.places.length; j++) {
             const placeName = selectedTour.places[j].getAttribute("name");
+            console.log(selectedTour.places[j].getAttribute("name"));
             const lat = selectedTour.places[j].getAttribute("lat");
             const lon = selectedTour.places[j].getAttribute("lon");
 
@@ -135,7 +136,7 @@ function showTour(index) {
 
 // Функція для закриття вікна
 function closeTour() {
-    const backgroundDiv = document.getElementById("selectBackground");
+    const backgroundDiv = document.getElementById("tourDivBackground");
     backgroundDiv.style.display = "none";
     while(backgroundDiv.firstChild){
         div.removeChild(backgroundDiv.firstChild);
