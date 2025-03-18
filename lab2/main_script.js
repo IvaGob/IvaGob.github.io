@@ -93,7 +93,7 @@ function loadXML() {
 // Функція для відображення великого div з картою
 function showTour(index) {
     const selectedTour = toursData[index];
-    const backgroundDiv = document.getElementById("selectBackground");
+    const backgroundDiv = document.getElementById("tourDivBackground");
 
     // Очищуємо контейнер перед додаванням нового вікна
     backgroundDiv.innerHTML = "";
