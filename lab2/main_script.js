@@ -17,6 +17,9 @@ function loadXML() {
                 const price = tours[i].getElementsByTagName("price")[0].textContent;
                 const places = tours[i].getElementsByTagName("place");
 
+                // Зберігаємо дані туру
+                toursData.push({ title, imgSrc, description, duration, price, places });
+
                 // Створюємо HTML-картку
                 const tourDiv = document.createElement("div");
                 tourDiv.classList.add("tourDiv");
