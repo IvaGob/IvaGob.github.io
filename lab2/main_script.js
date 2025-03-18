@@ -81,6 +81,7 @@ function showTour(index) {
 
     // Відображаємо задній фон для розмивання
     tourDivBackground.style.display = 'block';
+
 }
 
 
