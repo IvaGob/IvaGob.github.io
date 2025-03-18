@@ -51,7 +51,7 @@ function loadXML() {
                                     </div>
                                 </div>
                                 <div class="tourOrder">
-                                    <button class="tourOrderButton" onclick="showTour(${i})>
+                                    <button class="tourOrderButton" onclick="showTour(${i})">
                                         <h2>Замовити</h2>
                                     </button>
                                 </div>
