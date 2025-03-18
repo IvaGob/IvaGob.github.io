@@ -137,7 +137,9 @@ function showTour(index) {
 function closeTour() {
     const backgroundDiv = document.getElementById("selectBackground");
     backgroundDiv.style.display = "none";
-    backgroundDiv.innerHTML = "";
+    while(backgroundDiv.firstChild){
+        div.removeChild(backgroundDiv.firstChild);
+    }
 }
 
 // Викликаємо функцію при завантаженні сторінки
