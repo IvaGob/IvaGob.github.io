@@ -115,6 +115,25 @@ function showTour(index) {
     closeButton.onclick = () => closeTour(index);
     selectedTour.querySelector(".tourDivFooter").appendChild(closeButton);
 }
+// Функція для закриття обраного туру
+function closeTour(index) {
+    const selectedTour = document.getElementById(`tour-${index + 1}`);
+    selectedTour.classList.remove('active');
+
+    // Сховати розмитий фон
+    const tourDivBackground = document.getElementById('tourDivBackground');
+    tourDivBackground.style.display = 'none';
+
+    // Показати зображення замість карти
+    const img = selectedTour.querySelector('.tourDescriptionImage img');
+    img.style.display = 'block';
+    const mapContainer = selectedTour.querySelector('.map-container');
+    mapContainer.style.display = 'none';
+
+    // Видалити кнопку закриття
+    const closeButton = selectedTour.querySelector(".closeButton");
+    if (closeButton) closeButton.remove();
+}
 
 // Викликаємо функцію при завантаженні сторінки
 window.onload = loadXML;
