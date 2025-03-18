@@ -90,9 +90,17 @@ function loadXML() {
 // Функція для відображення великого div з картою
 function showTour(index) {
     const selectedTour = toursData[index];
+    const backgroundDiv = document.getElementById("selectBackground");
 
-    const tourDetails = document.getElementById("tourDetails");
-    tourDetails.innerHTML = `
+    // Очищуємо контейнер перед додаванням нового вікна
+    backgroundDiv.innerHTML = "";
+
+    // Створюємо великий div
+    const tourPopup = document.createElement("div");
+    tourPopup.classList.add("tourPopup");
+
+    tourPopup.innerHTML = `
+        <button class="closeButton" onclick="closeTour()">Закрити</button>
         <h1>${selectedTour.title}</h1>
         <div id="map" class="map-container"></div>
         <h2>${selectedTour.description}</h2>
@@ -100,8 +108,8 @@ function showTour(index) {
         <p><strong>Ціна:</strong> ${selectedTour.price}</p>
     `;
 
-    // Показуємо великий div
-    document.getElementById("tourOverlay").style.display = "flex";
+    backgroundDiv.appendChild(tourPopup);
+    backgroundDiv.style.display = "flex";
 
     // Створюємо карту
     setTimeout(() => {
@@ -124,7 +132,9 @@ function showTour(index) {
 
 // Функція для закриття вікна
 function closeTour() {
-    document.getElementById("tourOverlay").style.display = "none";
+    const backgroundDiv = document.getElementById("selectBackground");
+    backgroundDiv.style.display = "none";
+    backgroundDiv.innerHTML = "";
 }
 
 // Викликаємо функцію при завантаженні сторінки
