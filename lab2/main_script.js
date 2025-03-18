@@ -19,7 +19,7 @@ function loadXML() {
                 // Створюємо HTML-картку
                 const tourDiv = document.createElement("div");
                 tourDiv.classList.add("tourDiv");
-                tourDiv.id.add(`tour-${i}`);
+                tourDiv.setAttribute("id", "tour-1");
                 tourDiv.innerHTML = `
                             <div class="tourName">
                                 <h1>${title}</h1>
