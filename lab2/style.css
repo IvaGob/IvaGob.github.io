@@ -212,6 +212,7 @@ footer{
     }
     body{
         background-image: url(img/background-mobile.jpg);
+        min-height: 100vh;
     }
     .tourImage{
         height: 80%;
