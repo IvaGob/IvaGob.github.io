@@ -1,3 +1,5 @@
+let toursData = [];
+
 // Функція завантаження XML-файлу
 function loadXML() {
     fetch('tours.xml')
@@ -85,54 +87,44 @@ function loadXML() {
         .catch(error => console.error("Помилка завантаження XML:", error));
 }
 
-// Функція для відображення обраного туру
+// Функція для відображення великого div з картою
 function showTour(index) {
-    const tours = document.querySelectorAll('.tourDiv');
-    const tourDivBackground = document.getElementById('tourDivBackground');
+    const selectedTour = toursData[index];
 
-    // Встановлюємо всі тури назад
-    tours.forEach(tour => {
-        tour.classList.remove('active');
-    });
+    const tourDetails = document.getElementById("tourDetails");
+    tourDetails.innerHTML = `
+        <h1>${selectedTour.title}</h1>
+        <div id="map" class="map-container"></div>
+        <h2>${selectedTour.description}</h2>
+        <p><strong>Тривалість:</strong> ${selectedTour.duration}</p>
+        <p><strong>Ціна:</strong> ${selectedTour.price}</p>
+    `;
 
-    // Активуємо обраний тур
-    const selectedTour = document.getElementById(`tour-${index + 1}`);
-    selectedTour.classList.add('active');
+    // Показуємо великий div
+    document.getElementById("tourOverlay").style.display = "flex";
 
-    // Відображаємо задній фон для розмивання
-    tourDivBackground.style.display = 'block';
+    // Створюємо карту
+    setTimeout(() => {
+        const map = L.map('map').setView([selectedTour.places[0].getAttribute("lat"), selectedTour.places[0].getAttribute("lon")], 10);
 
-    // Створюємо карту замість фото
-    const img = selectedTour.querySelector('.tourDescriptionImage img');
-    img.style.display = 'none';
-    const mapContainer = selectedTour.querySelector('.map-container');
-    mapContainer.style.display = 'block';
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
-    // Додаємо кнопку для закриття
-    const closeButton = document.createElement("button");
-    closeButton.classList.add("closeButton");
-    closeButton.textContent = "Закрити";
-    closeButton.onclick = () => closeTour(index);
-    selectedTour.querySelector(".tourDivFooter").appendChild(closeButton);
+        // Додаємо маркери
+        for (let j = 0; j < selectedTour.places.length; j++) {
+            const placeName = selectedTour.places[j].getAttribute("name");
+            const lat = selectedTour.places[j].getAttribute("lat");
+            const lon = selectedTour.places[j].getAttribute("lon");
+
+            L.marker([lat, lon]).addTo(map).bindPopup(`<b>${placeName}</b>`);
+        }
+    }, 100);
 }
-// Функція для закриття обраного туру
-function closeTour(index) {
-    const selectedTour = document.getElementById(`tour-${index + 1}`);
-    selectedTour.classList.remove('active');
 
-    // Сховати розмитий фон
-    const tourDivBackground = document.getElementById('tourDivBackground');
-    tourDivBackground.style.display = 'none';
-
-    // Показати зображення замість карти
-    const img = selectedTour.querySelector('.tourDescriptionImage img');
-    img.style.display = 'block';
-    const mapContainer = selectedTour.querySelector('.map-container');
-    mapContainer.style.display = 'none';
-
-    // Видалити кнопку закриття
-    const closeButton = selectedTour.querySelector(".closeButton");
-    if (closeButton) closeButton.remove();
+// Функція для закриття вікна
+function closeTour() {
+    document.getElementById("tourOverlay").style.display = "none";
 }
 
 // Викликаємо функцію при завантаженні сторінки
