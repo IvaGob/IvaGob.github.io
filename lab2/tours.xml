@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tours>
+    <tour>
+        <title>Сонячна Італія</title>
+        <img>img/italy.webp</img>
+        <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</description>
+        <duration>13 днів</duration>
+        <price>40 000 грн</price>
+    </tour>
+    <tour>
+        <title>Хмарна Британія</title>
+        <img>img/britain.webp</img>
+        <description>Donec sodales viverra mi, porttitor efficitur nisi...</description>
+        <duration>23 днів</duration>
+        <price>64 000 грн</price>
+    </tour>
+    <tour>
+        <title>Таємнича Японія</title>
+        <img>img/Japan.jpg</img>
+        <description>Etiam sed magna sed nunc porta placerat in ac ex...</description>
+        <duration>10 днів</duration>
+        <price>57 500 грн</price>
+    </tour>
+</tours>
