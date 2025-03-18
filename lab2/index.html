@@ -187,72 +187,7 @@
                 </div>
                 <div class = "tourDescription">
                     <div class = "tourDescriptionImage">
-                        <!DOCTYPE html>
-<html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Туристична мапа</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <style>
-        #map {
-            height: 600px;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <h2>Популярні туристичні місця</h2>
-    <div id="map"></div>
-
-    <script>
-        // Створюємо карту та задаємо початкове положення (Київ)
-        var map = L.map('map').setView([50.4501, 30.5234], 6);
-
-        // Додаємо OpenStreetMap тайли
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
-        }).addTo(map);
-
-        // Масив популярних туристичних місць (координати + інформація)
-        var places = [
-            {
-                name: "Софійський собор",
-                description: "Один із найвідоміших соборів України. Входить до списку ЮНЕСКО.",
-                lat: 50.4520,
-                lng: 30.5144
-            },
-            {
-                name: "Карпати",
-                description: "Гірський регіон з чудовими краєвидами та курортами.",
-                lat: 48.8475,
-                lng: 24.8652
-            },
-            {
-                name: "Кам'янець-Подільська фортеця",
-                description: "Історична фортеця XIII століття, популярний туристичний об'єкт.",
-                lat: 48.6740,
-                lng: 26.5814
-            },
-            {
-                name: "Одеський оперний театр",
-                description: "Один із найкрасивіших театрів у світі, збудований у XIX столітті.",
-                lat: 46.4856,
-                lng: 30.7410
-            }
-        ];
-
-        // Додаємо маркери на карту
-        places.forEach(place => {
-            var marker = L.marker([place.lat, place.lng]).addTo(map);
-            marker.bindPopup(`<b>${place.name}</b><br>${place.description}`);
-        });
-
-    </script>
-</body>
-</html>
-
+                        <img src="img/italy.webp" alt="Італія" class = "tourImage">
                     </div>
                     
                 </div>
