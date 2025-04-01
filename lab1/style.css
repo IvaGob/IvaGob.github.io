@@ -71,15 +71,15 @@ footer{
 }
 .tourDescriptionText{
     position: absolute;
-    top: 50px;
-    left: 10px;
-    right: 10px;
-    width: 100%;
+    top: 10px;
+    width: 80%;
     height: 100%;
     text-align: justify;
     opacity: 0; /* Спочатку прихований */
     transition: opacity 0.5s ease-in-out;
     color:#202939;
+    background-color:#24527A;
+    border-radius: 20px;
 }
 .tourDescriptionImage{
     object-fit: cover;
@@ -99,8 +99,12 @@ footer{
     opacity: 1;
 }
 .tourDivFooter{
+    position: absolute;
     bottom: 0;
-    margin: 30px;
+    left: 50%;
+    width: 70%;
+    transform: translateX(-50%);
+    margin-bottom: 30px;
     border-radius: 15px;
     background-color: #33425B;
     display: flex;
@@ -135,7 +139,6 @@ footer{
 .tourListDiv{
     display: flex;
     justify-content: center;
-    display: flex;
     flex-wrap: wrap; /* Дозволяє елементам переноситись */
     gap: 10px; /* Відступи між елементами */
     margin-left: 10px;
@@ -242,9 +245,15 @@ footer{
     footer{
         margin-top: 80px;
     }
+    .tourListDiv{
+        display: block;
+    }
     .tourImage{
         height: 80%;
         width: 80%;
+    }
+    .tourDiv{
+        margin-bottom: 20px;
     }
     .tourDivFooter{
         justify-content: center;
@@ -259,6 +268,7 @@ footer{
         padding-left: 20px;
         width: auto;
         text-align: justify;
+        
     }
     .tourDescriptionImage{
         display: flex;
