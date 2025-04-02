@@ -7,9 +7,9 @@
         <duration>13 днів</duration>
         <price>40 000 грн</price>
         <places>
-            <place name="Колізей" lat="41.8902" lon="12.4922"/>
-            <place name="Фонтан Треві" lat="41.9009" lon="12.4833"/>
-            <place name="Ватикан" lat="41.9029" lon="12.4534"/>
+            <place name="Колізей" lat="41.8902" lon="12.4922" desc="Стародавня споруда часів стародавнього риму"/>
+            <place name="Фонтан Треві" lat="41.9009" lon="12.4833" desc="жопа жопа жопа"/>
+            <place name="Ватикан" lat="41.9029" lon="12.4534" desc="ну тут Папа  сидить короче"/>
         </places>
     </tour>
     <tour>
@@ -19,9 +19,9 @@
         <duration>23 днів</duration>
         <price>64 000 грн</price>
         <places>
-            <place name="Біг-Бен" lat="51.5007" lon="-0.1246"/>
-            <place name="Тауерський міст" lat="51.5055" lon="-0.0754"/>
-            <place name="Букінгемський палац" lat="51.5014" lon="-0.1419"/>
+            <place name="Біг-Бен" lat="51.5007" lon="-0.1246" desc="великий годинник"/>
+            <place name="Тауерський міст" lat="51.5055" lon="-0.0754" desc="міст лол"/>
+            <place name="Букінгемський палац" lat="51.5014" lon="-0.1419" desc="там короче королева чи хтось хз"/>
         </places>
     </tour>
     <tour>
