@@ -6,8 +6,8 @@ async function loadXML() {
         .then(str => new window.DOMParser().parseFromString(str, "text/xml")) 
         .then(xmlDoc => {
             const tours = xmlDoc.getElementsByTagName("tour");
-
-            for (let i = 0; i < tours.length; i++) {
+            let i = 0;
+            while ( i < tours.length) {
                 const title = tours[i].getElementsByTagName("title")[0].textContent;
                 const imgSrc = tours[i].getElementsByTagName("img")[0].textContent;
                 const description = tours[i].getElementsByTagName("description")[0].textContent;
@@ -23,6 +23,7 @@ async function loadXML() {
                 }));
 
                 toursData.push({ title, imgSrc, description, duration, price, places: placeData });
+                i++;
             }
         });
 }
@@ -42,7 +43,6 @@ function showTour(index) {
     tourPopup.innerHTML = `
         <button class="closeButton" onclick="closeTour()"><img src="img/back-button.png" class="back-button"></img></button>
         <h1>${selectedTour.title}</h1>
-        <div id="map" class="map-container"></div>
         <img src="${selectedTour.imgSrc}" class = "popup-image"></img>
         <h2>${selectedTour.description}</h2>
         <div class  = "tourDivFooter"><p><strong>Тривалість:</strong> ${selectedTour.duration}</p>
@@ -76,52 +76,97 @@ function SetDivs(){
 function createTourDiv() {
     const container = document.getElementById("tours-container");
     container.innerHTML = ""; // Очистка перед створенням нових елементів
+    let index = 0;
+while (index < toursData.length) {
+    console.log(index);
+    let ordered = false;
+    let arr = JSON.parse(localStorage.getItem("orderedTours")) || [];
+    let i = arr.indexOf(index);
+    if (i !== -1) {
+        ordered = true;
+    }
 
-    toursData.forEach((tour, index) => {
-        const tourDiv = document.createElement("div");
-        tourDiv.classList.add("tourDiv");
-        tourDiv.id = `tour-${index + 1}`;
-
+    const tour = toursData[index];
+    const tourDiv = document.createElement("div");
+    tourDiv.classList.add("tourDiv");
+    tourDiv.id = `tour-${index + 1}`;
+    if(ordered){
         tourDiv.innerHTML = `
-            <div class="tourName">
-                <h1>${tour.title}</h1>
+        <div class="tourName">
+            <h1>${tour.title}</h1>
+        </div>
+        <div class="tourDescription">
+            <div class="tourDescriptionImage">
+                <img src="${tour.imgSrc}" alt="${tour.title}" class="tourImage">
             </div>
-            <div class="tourDescription">
-                <div class="tourDescriptionImage">
-                    <img src="${tour.imgSrc}" alt="${tour.title}" class="tourImage">
-                </div>
-                <div class="tourDescriptionText">
-                    <h2>${tour.description}</h2>
-                </div>
+            <div class="tourDescriptionText">
+                <h2>${tour.description}</h2>
             </div>
-            <div id="map-${index}" class="map-container"></div>
-            <div class="tourDivFooter">
-                <div class="DurationDiv">
-                    <div class="DurationDivHead">
-                        <h1>Тривалість</h1>
-                    </div>
-                    <div class="DurationDivText">
-                        <h2>${tour.duration}</h2>
-                    </div>
+        </div>
+        <div id="map-${index}" class="map-container"></div>
+        <div class="tourDivFooter">
+            <div class="DurationDiv">
+                <div class="DurationDivHead">
+                    <h1>Тривалість</h1>
                 </div>
-                <div class="PriceDiv">
-                    <div class="PriceDivHead">
-                        <h1>Ціна</h1>
-                    </div>
-                    <div class="PriceDivText">
-                        <h2>${tour.price}</h2>
-                    </div>
-                </div>
-                <div class="tourOrder">
-                    <button class="tourOrderButton" onclick="showTour(${index})">
-                        <h2>Замовити</h2>
-                    </button>
+                <div class="DurationDivText">
+                    <h2>${tour.duration}</h2>
                 </div>
             </div>
-        `;
+            <div class="PriceDiv">
+                <div class="PriceDivHead">
+                    <h1>Ціна</h1>
+                </div>
+                <div class="PriceDivText">
+                    <h2>${tour.price}</h2>
+                </div>
+            </div>
+        </div>
+    `;
+    } else{
+        tourDiv.innerHTML = `
+        <div class="tourName">
+            <h1>${tour.title}</h1>
+        </div>
+        <div class="tourDescription">
+            <div class="tourDescriptionImage">
+                <img src="${tour.imgSrc}" alt="${tour.title}" class="tourImage">
+            </div>
+            <div class="tourDescriptionText">
+                <h2>${tour.description}</h2>
+            </div>
+        </div>
+        <div id="map-${index}" class="map-container"></div>
+        <div class="tourDivFooter">
+            <div class="DurationDiv">
+                <div class="DurationDivHead">
+                    <h1>Тривалість</h1>
+                </div>
+                <div class="DurationDivText">
+                    <h2>${tour.duration}</h2>
+                </div>
+            </div>
+            <div class="PriceDiv">
+                <div class="PriceDivHead">
+                    <h1>Ціна</h1>
+                </div>
+                <div class="PriceDivText">
+                    <h2>${tour.price}</h2>
+                </div>
+            </div>
+            <div class="tourOrder">
+                <button class="tourOrderButton" onclick="showTour(${index})">
+                    <h2>Замовити</h2>
+                </button>
+            </div>
+        </div>
+    `;
+    }
+    
 
-        container.appendChild(tourDiv);
-    });
+    container.appendChild(tourDiv);
+    index++;
+}
 }
 
 function orderTour(index){
@@ -154,6 +199,7 @@ function displayBookedTours() {
         const tourDiv = document.createElement("div");
         tourDiv.classList.add("orderedTourDiv");
         tourDiv.innerHTML = `
+            <button class="closeButton" onclick="unorderTour(${index})"><img src="img/back-button.png" class="back-button"></img></button>
             <h1>${tour.title}</h1>
             <h2>${tour.description}</h2>
             <div id="map-${index}" class="map-container"></div>
@@ -176,6 +222,16 @@ function initMap(index, places) {
         L.marker([place.lat, place.lon]).addTo(map)
             .bindPopup(`<b>${place.name}</b><br>${place.desc}`);
     });
+}
+
+function unorderTour(index){
+    let arr = JSON.parse(localStorage.getItem("orderedTours")) || [];
+    let i = arr.indexOf(index);
+    if (i !== -1) {
+        arr.splice(i, 1);
+    }
+    localStorage.setItem("orderedTours", JSON.stringify(arr));
+    location.reload();
 }
 
 // Викликаємо функцію при завантаженні сторінки

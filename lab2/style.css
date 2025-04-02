@@ -298,7 +298,12 @@ footer{
     height: 400px; /* Або більше */
 }
 
-
+.orderedTourDiv{
+    background-color: #24527A;
+    border-radius: 30px;
+    margin: 30px;
+    padding: 20px;
+}
 
 
 @media screen and (max-width: 490px) {
