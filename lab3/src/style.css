@@ -1,0 +1,367 @@
+.header{
+    background-color: #5DACBD;
+    display: flex;
+    column-gap: 3%;
+    
+    padding-left: 3%;
+}
+
+a:link, a:visited {
+    color: #33425B;
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover{
+    color:#E0EBEB;
+}
+body{
+    min-height: 800px;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-image: url(img/background3.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+footer{
+    background-color: #5DACBD;
+    height: 50px;
+    width: 100%;
+}
+.introductionDiv{
+    padding-top: 3%;
+}
+.introductionTextDiv{
+    margin-top: 3%;
+    text-align: center;
+}
+.introductionText{
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.icon{
+    height: 64px;
+    width: 64px;
+}
+.iconDiv{
+    display: flex;
+    justify-content: center;
+}
+/*div турів*/
+.tourDiv{
+    background-color: #24527A;
+    flex: 1 1 calc(33.33% - 10px);
+    border-radius: 20px;
+    padding-bottom: 5px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    width: 300px;
+    height: 700px;
+}
+
+@media screen and (max-width: 1400px){
+    .tourDiv{
+        flex: 1 1 calc(50% - 10px);
+    }
+}
+
+.tourName{
+    padding-top: 20px;
+    text-align: center;
+}
+.tourDescription{
+    display: flex;
+    justify-content: center;
+}
+.tourDescriptionText{
+    position: absolute;
+    top: 10px;
+    width: 80%;
+    height: 100%;
+    text-align: justify;
+    opacity: 0; /* Спочатку прихований */
+    transition: opacity 0.5s ease-in-out;
+    color:#202939;
+    background-color:#24527A;
+    border-radius: 20px;
+}
+.tourDescriptionImage{
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+    display: flex;
+    justify-content: center;
+}
+.tourImage{
+    height: 100%;
+    width: 90%;
+    max-width: 300px;
+}
+.tourDiv:hover .tourDescriptionImage{
+    opacity: 0; /* При наведенні зникає */
+}
+.tourDiv:hover .tourDescriptionText{
+    opacity: 1;
+}
+.tourDivFooter{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+    margin-bottom: 30px;
+    border-radius: 15px;
+    background-color: #33425B;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.DurationDiv{
+    text-align: center;
+}
+.PriceDiv{
+    text-align: center;
+}
+.tourOrder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tourOrderButton{
+    background-color: #A7BCB9;
+    border-style: none;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    width: 100%;
+}
+.tourOrderButton:hover{
+    background-color: #859593;
+}
+/*div список div-ів турів*/
+.tourListDiv{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Дозволяє елементам переноситись */
+    gap: 10px; /* Відступи між елементами */
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.footer-text{
+    color: #33425B;
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+.map{
+    width: 600px;
+    height: 480px;
+}
+
+
+/*---------contactus----------*/
+.find-div{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #33425B;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.contact-div{
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #33425B;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+.contact-input{
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 20px;
+    border-style: none;
+    min-height: 70px;
+    background-color: #202939;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    color:#E0EBEB;
+}
+.contact-submit{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 40%;
+    border-style: none;
+    min-width: 60px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #A7BCB9;
+}
+.map-img{
+    width: 80%;
+    height: 80%;
+}
+.own-tour-div{
+    margin-top: 20px;
+    margin-right:20px;
+    margin-left:20px;
+    background-color: #33425B;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+.head-text{
+    text-align: center;
+}
+.no-tour-img{
+    margin-top: 30px;
+    height: 40%;
+    width: 40%;
+}
+
+/*фівфівфівфів*/
+/* Задній фон для вибраного туру */
+.select-background-div {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.tourPopup {
+    background-color: #24527A;
+    border-radius: 30px;
+    padding: 20px;
+    width: 80%;
+    height: 80%;
+    /*max-width: 600px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    position: relative;
+}
+.closeButton{
+    background: none;
+    border: none;
+    height: 30px;
+    width: 30px;
+    right: 0%;
+}
+.back-button{
+    height: 30px;
+    width: 30px;
+}
+.popup-image{
+    width: 50%;
+    height: 50%;
+    max-height: 300px;
+}
+.popup-order-button{
+    background-color: #A7BCB9;
+    border-style: none;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    height: 60px;
+    text-align: center;
+}
+.popup-order-button:hover{
+    background-color: #859593;
+}
+
+[id^="map"] {
+    width: 100%;
+    height: 400px; /* Або більше */
+}
+
+.orderedTourDiv{
+    background-color: #24527A;
+    border-radius: 30px;
+    margin: 30px;
+    padding: 20px;
+}
+
+
+@media screen and (max-width: 490px) {
+    .header{
+        background-color: #5DACBD;
+        display: flex;
+        flex-direction: column;
+        row-gap: 3%;
+        align-items: center;
+        padding-left: 0%;
+    }
+    body{
+        background-image: url(img/background-mobile.jpg);
+        min-height: 100vh;
+    }
+    footer{
+        margin-top: 80px;
+    }
+    .tourListDiv{
+        display: block;
+    }
+    .tourImage{
+        height: 80%;
+        width: 80%;
+    }
+    .tourDiv{
+        margin-bottom: 20px;
+    }
+    .tourDivFooter{
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 20px;
+    }
+    .tourDescription{
+        flex-direction: column;
+    }
+    .tourDescriptionText{
+        padding-right: 20px;
+        padding-left: 20px;
+        width: auto;
+        text-align: justify;
+        
+    }
+    .tourDescriptionImage{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding-left: 0px;
+    }
+    .map{
+        width: 260px;
+        height: 260px;
+    }
+    .no-tour-img{
+        height: 60%;
+        width: 60%;
+    }
+    .contact-submit{
+        font-size: 10px;
+    }
+}

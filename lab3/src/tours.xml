@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tours>
+    <tour>
+        <title>Сонячна Італія</title>
+        <img>img/italy.webp</img>
+        <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</description>
+        <duration>13 днів</duration>
+        <price>40 000 грн</price>
+        <places>
+            <place name="Колізей" lat="41.8902" lon="12.4922" desc="Стародавня споруда часів стародавнього риму"/>
+            <place name="Фонтан Треві" lat="41.9009" lon="12.4833" desc="Ого фонтан"/>
+            <place name="Ватикан" lat="41.9029" lon="12.4534" desc="ну тут Папа  сидить короче"/>
+        </places>
+    </tour>
+    <tour>
+        <title>Хмарна Британія</title>
+        <img>img/britain.webp</img>
+        <description>Donec sodales viverra mi, porttitor efficitur nisi...</description>
+        <duration>23 днів</duration>
+        <price>64 000 грн</price>
+        <places>
+            <place name="Біг-Бен" lat="51.5007" lon="-0.1246" desc="великий годинник"/>
+            <place name="Тауерський міст" lat="51.5055" lon="-0.0754" desc="міст лол"/>
+            <place name="Букінгемський палац" lat="51.5014" lon="-0.1419" desc="там короче королева чи хтось хз"/>
+        </places>
+    </tour>
+    <tour>
+        <title>Таємнича Японія</title>
+        <img>img/Japan.jpg</img>
+        <description>Etiam sed magna sed nunc porta placerat in ac ex...</description>
+        <duration>10 днів</duration>
+        <price>57 500 грн</price>
+        <places>
+            <place name="Гора Фудзі" lat="35.3606" lon="138.7274"/>
+            <place name="Храм Сенсодзі" lat="35.7148" lon="139.7967"/>
+            <place name="Парк Уено" lat="35.7129" lon="139.7745"/>
+        </places>
+    </tour>
+</tours>
