@@ -1,44 +1,52 @@
 import React, { useEffect, useState } from "react";
 import TourCard from "./TourCard";
-
+import tourData from "../tourData";
+import '../index.css';
 const TourList = () => {
-  const [tours, setTours] = useState([]);
+  const initialTours = [
+    {
+      id: 0,
+      title: "Сонячна Італія",
+      imgSrc: "./img/italy.webp",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+      duration: "13 днів",
+      price: 40000,
+      places: [
+        { name: "Колізей", lat: 41.8902, lon: 12.4922, desc: "Стародавня споруда часів стародавнього риму" },
+        { name: "Фонтан Треві", lat: 41.9009, lon: 12.4833, desc: "Ого фонтан" },
+        { name: "Ватикан", lat: 41.9029, lon: 12.4534, desc: "ну тут Папа  сидить короче" }
+      ]
+    },
+    {
+      id: 1,
+      title: "Хмарна Британія",
+      imgSrc: "img/britain.webp",
+      description: "Donec sodales viverra mi, porttitor efficitur nisi...",
+      duration: "23 днів",
+      price: 64000,
+      places: [
+        { name: "Біг-Бен", lat: 51.5007, lon: -0.1246, desc: "великий годинник" },
+        { name: "Тауерський міст", lat: 51.5055, lon: -0.0754, desc: "міст лол" },
+        { name: "Букінгемський палац", lat: 51.5014, lon: -0.1419, desc: "там короче королева чи хтось хз" }
+      ]
+    },
+    {
+      id: 2,
+      title: "Таємнича Японія",
+      imgSrc: "img/Japan.jpg",
+      description: "Etiam sed magna sed nunc porta placerat in ac ex...",
+      duration: "10 днів",
+      price: 57000,
+      places: [
+        { name: "Гора Фудзі", lat: 35.3606, lon: 138.7274, desc: "Відома гора" },
+        { name: "Храм Сенсодзі", lat: 35.7148, lon: 139.7967, desc: "храм мамам" },
+        { name: "Парк Уено", lat: 35.7129, lon: 139.7745, desc: "дуже відомий парк" }
+      ]
+    }
+  ];
+  const [tours, setTours] = useState(initialTours);
+  const [searchTerm, setSearchTerm] = useState("");
   const [sorted, setSorted] = useState(false);
-
-  useEffect(() => {
-    fetch("/tours.xml")
-      .then(response => response.text())
-      .then(str => {
-        const parser = new DOMParser();
-        const xml = parser.parseFromString(str, "application/xml");
-        const tourNodes = xml.getElementsByTagName("tour");
-
-        const loadedTours = Array.from(tourNodes).map((tour) => {
-          const priceText = tour.getElementsByTagName("price")[0]?.textContent || "0";
-          const price = parseInt(priceText.replace(/\s|грн/g, ''), 10);
-
-          const placeNodes = tour.getElementsByTagName("place");
-          const places = Array.from(placeNodes).map(place => ({
-            name: place.getAttribute("name"),
-            lat: parseFloat(place.getAttribute("lat")),
-            lon: parseFloat(place.getAttribute("lon")),
-            desc: place.getAttribute("desc") || "",
-          }));
-
-          return {
-            title: tour.getElementsByTagName("title")[0]?.textContent || "",
-            imgSrc: tour.getElementsByTagName("img")[0]?.textContent || "",
-            description: tour.getElementsByTagName("description")[0]?.textContent || "",
-            duration: tour.getElementsByTagName("duration")[0]?.textContent || "",
-            price,
-            places,
-          };
-        });
-
-        setTours(loadedTours);
-      })
-      .catch(error => console.error("Помилка завантаження XML:", error));
-  }, []);
 
   const handleSort = () => {
     const sortedTours = [...tours].sort((a, b) => a.price - b.price);
@@ -46,17 +54,35 @@ const TourList = () => {
     setSorted(true);
   };
 
-  return (
-    <div className="tour-list">
-      <button onClick={handleSort} className="sort-button">
-        Сортувати за ціною (від дешевших)
-      </button>
+  const handleSearch = () => {
+    const filteredTours = initialTours.filter(tour =>
+      tour.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setTours(filteredTours);
+  };
 
-      <div className="tours">
+  return (
+    
+    <div className="tour-list">
+      <div className="control-div">
+        <button onClick={handleSort} className="sort-button">
+          <h3>Сортувати за ціною (від дешевших)</h3>
+        </button>
+        <div className="search-div">
+          <input className="search-bar" type="text" placeholder="Введіть назву країни..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+            <button onClick={handleSearch} className="search-button">
+              <h3>Пошук</h3>
+            </button>
+        </div>
+      </div>
+
+      <div className="tourListDiv">
         {tours.map((tour, index) => (
           <TourCard key={index} tour={tour} index={index} />
         ))}
       </div>
+      
+      
     </div>
   );
 };
